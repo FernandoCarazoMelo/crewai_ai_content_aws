@@ -1,52 +1,35 @@
 <body>
-    <h1>LUMINAI Refinery Advisor en AWS: Arquitectura para la Eficiencia Operativa</h1>
-    
-    <p>
-        En este post de <a href="https://awsdesdecero.com">awsdesdecero.com</a> te presentamos cómo una empresa del sector de las refinerías utiliza AWS para optimizar la eficiencia operativa de sus instalaciones. De esta forma, consigue recomendaciones precisas para cerrar la brecha de rentabilidad y maximizar su rendimiento.
-    </p>
-    
-    <h2>Introducción al Caso Práctico</h2>
-    <p>
-        El <strong>LUMINAI Refinery Advisor</strong> es un sistema de soporte de decisiones impulsado por inteligencia artificial que ayuda a optimizar la eficiencia operativa de las refinerías. Esta arquitectura en AWS permite un despliegue altamente escalable que agrega y analiza datos operativos de múltiples refinerías en tiempo real, ofreciendo recomendaciones que permiten a los operadores actuar de forma efectiva y rápida.
-    </p>
-    
-    <h2>Servicios Clave de AWS Utilizados</h2>
-    <p>
-        La arquitectura de LUMINAI utiliza varios servicios gestionados de AWS, que incluyen:
-    </p>
-    <ul>
-        <li><strong>Amazon Elastic Container Service (ECS)</strong>: Este servicio facilita la gestión y ejecución de contenedores que procesan datos en tiempo real, garantizando un rendimiento óptimo y escalabilidad.</li>
-        <li><strong>Amazon Aurora</strong>: Es una base de datos relacional que almacena los resultados procesados y permite un acceso rápido a los datos a largo plazo, garantizando integridad y seguridad.</li>
-        <li><strong>Amazon Managed Streaming for Apache Kafka (MSK)</strong>: Permite la ingestión y procesamiento de flujos de datos en tiempo real, lo que hace posible el análisis inmediato de grandes volúmenes de datos.</li>
-        <li><strong>Amazon MQ</strong>: Actúa como un sistema de colas de mensajes, facilitando la comunicación entre los diferentes servicios de forma fluida y eficiente.</li>
-        <li><strong>Amazon Simple Storage Service (S3)</strong>: Ofrece almacenamiento seguro y duradero para datos a largo plazo, lo que es crucial para la continuidad del negocio.</li>
-        <li><strong>Amazon EMR</strong>: Este servicio permite el procesamiento de grandes conjuntos de datos utilizando herramientas de Big Data, transformando y analizando datos con rapidez.</li>
-    </ul>
-    
-    <h2>Descripción de la Arquitectura Punto por Punto</h2>
+    <h1>LUMINAI Refinery Advisor en AWS: Arquitectura y Servicios Clave</h1>
+
+    <h2>Introducción al caso práctico</h2>
+    <p>La arquitectura de LUMINAI Refinery Advisor en AWS es un ejemplo potente de cómo las soluciones impulsadas por inteligencia artificial pueden optimizar las operaciones en el sector energético. LUMINAI proporciona un sistema de soporte a decisiones que permite a los operadores mantener una visión integral de todas las operaciones de una refinería y hacer recomendaciones en tiempo real, buscando maximizar la eficiencia operativa y cerrar la brecha de rentabilidad. Para más información sobre arquitectura en la nube, visita <a href="https://awsdesdecero.com">awsdesdecero.com</a>.</p>
+
+    <h2>Explicación de los servicios clave de AWS utilizados</h2>
     <ol>
-        <li><strong>Ingesta de Datos:</strong> Los datos operativos generados por las refinerías son transmitidos al sistema LUMINAI en AWS, garantizando una recopilación eficiente y en tiempo real.</li>
-        <li><strong>Equilibrio de Carga:</strong> Un <strong>Application Load Balancer</strong> en una subred pública configura el flujo de datos, dirigiendo los mismos hacia un pipeline de procesamiento de sensores situado en una subred privada.</li>
-        <li><strong>Procesamiento de Datos en Tiempo Real:</strong> Amazon ECS gestiona procesos que redirigen los flujos de datos hacia Amazon MSK, donde dichos datos son ingeridos y procesados a gran escala para actuación inmediata.</li>
-        <li><strong>ETL y Almacenamiento de Resultados:</strong> Los trabajos ETL se ejecutan en Amazon EMR, con resultados almacenados en Amazon Aurora PostgreSQL. Posteriormente, estos resultados se envían a través de Amazon MQ para su disponibilidad.</li>
-        <li><strong>Servicios de Negocio:</strong> Los servicios de negocio, <strong>Orchestrator</strong> y <strong>Reasoner</strong>, se gestionan sobre Amazon ECS y procesan los mensajes entrantes de Amazon MQ utilizando algoritmos impulsados por IA, aportando valor analítico.</li>
-        <li><strong>Acceso a Datos:</strong> Datos procesados y analizados se almacenan en Aurora, siendo accesibles a través de una interfaz web, API y herramientas de inteligencia empresarial (BI), lo que permite a los usuarios interactuar con la información de forma sencilla.</li>
-        <li><strong>Acceso de Usuarios Autorizados:</strong> Los gerentes de planta, equipos de mantenimiento, ingenieros y científicos de datos tienen la capacidad de acceder a la información mediante herramientas de BI y navegadores web, habilitando la toma de decisiones basada en datos.</li>
-        <li><strong>Almacenamiento a Largo Plazo:</strong> Los datos históricos y relevantes se almacenan en Amazon S3, permitiendo su uso futuro y facilitando análisis adicionales a lo largo del tiempo.</li>
+        <li><strong>Amazon Elastic Container Service (ECS)</strong>: Permite ejecutar aplicaciones en contenedores, habilitando el despliegue y gestión de las aplicaciones de LUMINAI en un entorno escalable y seguro.</li>
+        <li><strong>Amazon Aurora</strong>: Es una base de datos relacional que combina la velocidad y disponibilidad de bases de datos de alto rendimiento con la simplicidad y coste efectividad de bases de datos de código abierto.</li>
+        <li><strong>Amazon MQ</strong>: Es un servicio de mensajería que facilita la comunicación entre los diversos componentes del sistema, proporcionando un flujo de mensajes robusto y escalable.</li>
+        <li><strong>Amazon Managed Streaming for Apache Kafka (MSK)</strong>: Facilita la ingesta y procesamiento de datos en tiempo real, permitiendo el manejo de eventos a gran escala.</li>
+        <li><strong>Amazon Simple Storage Service (S3)</strong>: Proporciona almacenamiento en la nube altamente escalable para datos a largo plazo, asegurando que toda la información sea accesible y segura.</li>
+        <li><strong>Amazon EMR</strong>: Permite ejecutar trabajos de procesamiento de datos a gran escala mediante herramientas de big data como Apache Hadoop y Apache Spark.</li>
     </ol>
-    
-    <h2>Conclusión con Puntos Clave</h2>
-    <p>
-        La arquitectura LUMINAI Refinery Advisor en AWS es una solución robusta que permite a las refinerías optimizar su operación en tiempo real y acceder a análisis variados mediante un acceso sencillo a los datos. La combinación de tecnologías de contenedores, bases de datos avanzadas y servicios de mensajería asegura un procesamiento eficiente de la información, mejorando notablemente la toma de decisiones.
-    </p>
-    
-    <p>
-        <strong>Enlace al Diagrama Original:</strong> <a href="https://docs.aws.amazon.com/architecture-diagrams/latest/luminai-refinery-advisor-on-aws/luminai-refinery-advisor-on-aws.html?did=wp_card&trk=wp_card">LUMINAI Refinery Advisor on AWS Diagrama</a>
-    </p>
-    <img src="https://docs.aws.amazon.com/images/architecture-diagrams/latest/luminai-refinery-advisor-on-aws/images/luminai-refinery-advisor-on-aws.png" alt="Diagrama LUMINAI Refinery Advisor">
-    
-    <p>
-        Para más información sobre arquitectura en la nube, visita <a href="https://awsdesdecero.com">awsdesdecero.com</a>.
-    </p>
+
+    <h2>Descripción de la arquitectura punto por punto</h2>
+    <ol>
+        <li><strong>Flujo de Datos</strong>: Los datos de operaciones de múltiples refinerías se envían al sistema LUMINAI a través de un Application Load Balancer, que dirige el flujo de datos hacia un pipeline de procesamiento de sensores en una subred privada.</li>
+        <li><strong>Ingesta de Datos</strong>: Los procesos de ingesta de datos se ejecutan en Amazon ECS, donde se dirigen flujos de datos hacia Amazon MSK para su procesamiento en tiempo real.</li>
+        <li><strong>ETL y Almacenamiento</strong>: Los datos se procesan mediante trabajos de ETL (extracción, transformación y carga) en Amazon EMR. Los resultados se almacenan en Amazon Aurora PostgreSQL y se publican en Amazon MQ.</li>
+        <li><strong>Servicios de Negocio</strong>: Los servicios de orquestación y razonamiento de LUMINAI funcionan también en Amazon ECS y procesan mensajes a través de Amazon MQ. Utilizan algoritmos impulsados por IA para otorgar insights en tiempo real sobre cada refinería.</li>
+        <li><strong>Acceso a los Datos</strong>: Los datos procesados están disponibles para interfaces web, APIs y herramientas de inteligencia de negocios (BI), permitiendo a los usuarios autorizados – como gerentes de planta y ingenieros – acceder a la información mediante un navegador.</li>
+        <li><strong>Almacenamiento a Largo Plazo</strong>: Los datos históricos se almacenan en Amazon S3 para su fácil recuperación y análisis a largo plazo.</li>
+    </ol>
+
+    <h2>Conclusión</h2>
+    <p>La arquitectura de LUMINAI Refinery Advisor en AWS demuestra cómo se puede integrar de manera efectiva una solución de inteligencia artificial en el sector energético utilizando diversos servicios de AWS. Esta referencia arquitectónica resalta la escalabilidad, eficiencia y capacidad de análisis en tiempo real que se puede lograr a través de AWS, ofreciendo a las empresas la posibilidad de optimizar sus operaciones y maximizar la rentabilidad.</p>
+    <p>Para más información, dirígete a la <a href="https://docs.aws.amazon.com/architecture-diagrams/latest/luminai-refinery-advisor-on-aws/luminai-refinery-advisor-on-aws.html?did=wp_card&trk=wp_card">documentación de AWS</a>.</p>
+
+    <h2>Diagrama Original</h2>
+    <p>Puedes ver y descargar el diagrama desde <a href="https://docs.aws.amazon.com/architecture-diagrams/latest/luminai-refinery-advisor-on-aws/images/luminai-refinery-advisor-diagram.svg">aquí</a>.</p>
+    <img src="https://docs.aws.amazon.com/architecture-diagrams/latest/luminai-refinery-advisor-on-aws/images/luminai-refinery-advisor-diagram.svg" alt="Diagrama LUMINAI Refinery Advisor" />
 </body>
 ```
