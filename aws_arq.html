@@ -1,0 +1,31 @@
+<body>
+    <h1>LUMINAI Refinery Advisor en AWS</h1>
+    <p>El <strong>LUMINAI Refinery Advisor</strong> es un sistema de soporte a la decisión impulsado por inteligencia artificial, diseñado para optimizar la eficiencia operativa en refinerías. Este sistema proporciona recomendaciones en tiempo real para ayudar a los operadores a tomar decisiones informadas. La arquitectura de referencia que exploraremos ilustra un despliegue altamente escalable de LUMINAI en <a href="https://awsdesdecero.com">AWS</a>, utilizando varios servicios gestionados de AWS para recopilar, procesar y almacenar datos operativos de múltiples refinerías.</p>
+    
+    <h2>Servicios clave de AWS utilizados</h2>
+    <ul>
+        <li><strong>Amazon ECS:</strong> Utilizado para la ejecución de contenedores que procesan datos en tiempo real y gestionan los servicios de negocio.</li>
+        <li><strong>Amazon Aurora:</strong> Base de datos relacional altamente escalable y eficiente para el almacenamiento de resultados de procesamiento.</li>
+        <li><strong>Amazon MSK:</strong> Facilita la ingesta y procesamiento de datos en streaming.</li>
+        <li><strong>Amazon MQ:</strong> Servicio de mensajería para la gestión de datos entre servicios.</li>
+    </ul>
+
+    <h2>Descripción de la arquitectura punto por punto</h2>
+    <ol>
+        <li><strong>Ingesta de datos:</strong> Los datos operativos de las refinerías se transmiten al LUMINAI Refinery Advisor en AWS a través de un Application Load Balancer (ALB) en una subred pública, dirigiendo el flujo de datos a un pipeline de procesamiento de sensores en una subred privada.</li>
+        <li><strong>Procesamiento de datos en tiempo real:</strong> Los procesos de ingesta de datos en streaming ejecutados en Amazon ECS dirigen los flujos a Amazon Managed Streaming for Apache Kafka (Amazon MSK), que ingesta y procesa datos en tiempo real a gran escala.</li>
+        <li><strong>ETL y almacenamiento:</strong> Los resultados de cada trabajo de transformación y carga (ETL) se almacenan en Amazon Aurora PostgreSQL y se envían a Amazon MQ, que es un servicio de mensajería altamente eficiente y escalable.</li>
+        <li><strong>Servicios empresariales:</strong> Los servicios de orquestador y razonador de LUMINAI se ejecutan en Amazon ECS y procesan mensajes a través de Amazon MQ, aprovechando algoritmos impulsados por IA para proporcionar información en tiempo real.</li>
+        <li><strong>Acceso a datos:</strong> Los datos procesados son almacenados en Aurora PostgreSQL y están disponibles para herramientas de interfaz web, API y BI, mientras que los datos a largo plazo se guardan en Amazon Simple Storage Service (Amazon S3).</li>
+        <li><strong>Interfaz de usuario:</strong> Los usuarios, incluyendo gerentes de planta, equipos de mantenimiento y científicos de datos, acceden a los datos a través de una interfaz web o APIs, obteniendo una visión integral de cada refinería.</li>
+    </ol>
+
+    <h2>Diagrama de arquitectura</h2>
+    <p>A continuación se presenta el diagrama original de la arquitectura del LUMINAI Refinery Advisor:</p>
+    <img src="https://docs.aws.amazon.com/architecture-diagrams/latest/luminai-refinery-advisor-on-aws/images/architecture-diagram.png" alt="LUMINAI Refinery Advisor en AWS" style="width:100%; height:auto;">
+    <p>Puedes ver el diagrama original en el siguiente enlace: <a href="https://docs.aws.amazon.com/architecture-diagrams/latest/luminai-refinery-advisor-on-aws/luminai-refinery-advisor-on-aws.html?did=wp_card&trk=wp_card">LUMINAI Refinery Advisor on AWS</a>.</p>
+    
+    <h2>Conclusión</h2>
+    <p>El modelo arquitectónico de <strong>LUMINAI Refinery Advisor</strong> en AWS representa una solución robusta y escalable para optimizar la eficiencia operativa en refinerías. Al utilizar servicios gestionados de AWS, esta arquitectura proporciona un enfoque moderno para la ingesta, procesamiento y análisis de datos en un entorno altamente dinámico. Para más información sobre cómo adentrarte en el mundo de AWS, visita <a href="https://awsdesdecero.com">awsdesdecero.com</a>.</p>
+</body>
+```

@@ -1,0 +1,135 @@
+```html
+<body>
+    <h1>Guía Completa para Construir Aplicaciones de IA con Amazon Bedrock</h1>
+    <p>¡Hola a todos! Hoy exploraremos Amazon Bedrock, el servicio de AWS que nos permite construir aplicaciones de IA generativa de manera sencilla. A lo largo de esta guía, verás cómo empezar, qué características ofrece Bedrock y te llevaré a través de un ejemplo práctico paso a paso. Al final, tendrás una comprensión clara de cómo utilizar este servicio y estarás listo para implementarlo en tus proyectos.</p>
+
+    <h2>Introducción a Amazon Bedrock</h2>
+    <p>Amazon Bedrock es un servicio totalmente gestionado que facilita el acceso a modelos de inteligencia artificial, incluyendo los que Amazon ha desarrollado y los de terceros. Esto te permite crear aplicaciones innovadoras sin necesidad de preocuparte por la infraestructura subyacente. Puedes usar Bedrock para generar texto, crear imágenes, e incluso desarrollar modelos personalizados.</p>
+    <p>En esta guía, nos enfocaremos en cómo usar Bedrock para crear un generador de texto alternativo para imágenes, una aplicación que es útil para mejorar la accesibilidad.</p>
+
+    <h2>Requisitos Previos</h2>
+    <p>Antes de empezar, asegúrate de tener lo siguiente:</p>
+    <ul>
+        <li>Una cuenta de AWS activa.</li>
+        <li>Acceso a Amazon Bedrock (puedes solicitar acceso en la consola de AWS).</li>
+        <li>Conocimientos básicos de JavaScript y Node.js.</li>
+    </ul>
+
+    <h2>Paso a Paso: Generador de Texto Alternativo para Imágenes</h2>
+
+    <h3>1. Configuración del Entorno</h3>
+    <p>Primero, vamos a crear un nuevo proyecto de Node.js. Abre tu terminal y sigue estos pasos:</p>
+    <pre><code>mkdir img-alt-gen
+cd img-alt-gen
+npm init -y
+</code></pre>
+
+    <p>Luego, instalaremos el SDK de Bedrock:</p>
+    <pre><code>npm install @aws-sdk/client-bedrock-runtime
+</code></pre>
+
+    <h3>2. Configuración de AWS IAM</h3>
+    <p>Para interactuar con Bedrock, necesitas configurar las políticas de IAM. Ve a la consola de IAM en AWS y crea una política que permita el acceso total a Bedrock. Aquí tienes un ejemplo de política JSON:</p>
+    <pre><code>{
+ "Version": "2012-10-17",
+ "Statement": [
+   {
+     "Sid": "BedrockFullAccess",
+     "Effect": "Allow",
+     "Action": ["bedrock:*"],
+     "Resource": "*"
+   }
+ ]
+}
+</code></pre>
+
+    <p>Asigna esta política a tu usuario o rol de IAM.</p>
+
+    <h3>3. Creación del Archivo del Script</h3>
+    <p>Crea un archivo <code>index.js</code> y añade el siguiente código para interactuar con Bedrock:</p>
+    <pre><code>import {
+  BedrockRuntimeClient,
+  InvokeModelCommand,
+} from "@aws-sdk/client-bedrock-runtime";
+
+const brockClient = new BedrockRuntimeClient();
+const prompt = "Describe la imagen (objetos y texto) para el texto alternativo. Escribe solo el texto en una frase.";
+
+const modelInput = {
+  messages: [
+    {
+      role: "user",
+      content: [
+        {
+          text: prompt,
+        },
+      ],
+    },
+  ],
+};
+
+const modelCmd = new InvokeModelCommand({
+  modelId: "amazon.nova-lite-v1:0",
+  body: JSON.stringify(modelInput),
+});
+
+const res = await brockClient.send(modelCmd);
+const jsonRes = Buffer.from(res.body).toString("utf8");
+console.dir(JSON.parse(jsonRes), { depth: null });
+</code></pre>
+
+    <h3>4. Enviar Imágenes a Bedrock</h3>
+    <p>Para enviar imágenes, primero lee la imagen como base64. Modificaremos el script para incluir esta funcionalidad:</p>
+    <pre><code>import { readFile } from "fs/promises";
+
+const base64Img = await readFile("./path-to-your-image.jpg", "base64");
+const prompt = "Describe la imagen (objetos y texto) para el texto alternativo. Escribe solo el texto en una frase.";
+
+const modelInput = {
+  messages: [
+    {
+      role: "user",
+      content: [
+        {
+          image: {
+            format: "jpeg",
+            source: { bytes: base64Img },
+          },
+        },
+        {
+          text: prompt,
+        },
+      ],
+    },
+  ],
+};
+</code></pre>
+
+    <h3>5. Ejecución del Script</h3>
+    <p>Ejecuta tu script con el siguiente comando en la terminal:</p>
+    <pre><code>node index.js
+</code></pre>
+    <p>Deberías ver un resultado que describe la imagen que enviaste.</p>
+
+    <h2>Mejores Prácticas y Errores Comunes</h2>
+
+    <h3>Mejores Prácticas</h3>
+    <ul>
+        <li><strong>Optimización de Tokens:</strong> Asegúrate de usar un número prudente de tokens en tus llamadas para optimizar costos.</li>
+        <li><strong>Revisión de Políticas de IAM:</strong> Revisa siempre las políticas de acceso para asegurar que no otorgas más permisos de los necesarios.</li>
+    </ul>
+
+    <h3>Errores Comunes</h3>
+    <ul>
+        <li><strong>Problemas de Permisos:</strong> Si recibes errores de acceso denegado, revisa tus políticas de IAM.</li>
+        <li><strong>Formateo de Datos:</strong> Asegúrate de que los datos que envíes a Bedrock estén en el formato correcto.</li>
+    </ul>
+
+    <h2>Conclusión</h2>
+    <p>Y ahí lo tienes. Ahora sabes cómo utilizar Amazon Bedrock para crear un generador de texto alternativo para imágenes. Este es solo un ejemplo del potencial que tienes al utilizar este servicio. Estoy emocionado de ver cómo aplicarás esto en tus propios proyectos. ¡Feliz codificación!</p>
+
+    <p>Si deseas revisar la guía rápida, puedes descargar el archivo CSV con la información resumida <a href="#">aquí</a>.</p>
+
+    <p>No dudes en comentar si tienes alguna pregunta o si simplemente quieres compartir tu experiencia al usar Amazon Bedrock. ¡Hasta la próxima!</p>
+</body>
+```

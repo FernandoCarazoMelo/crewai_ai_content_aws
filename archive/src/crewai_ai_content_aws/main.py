@@ -17,7 +17,9 @@ def run():
     """
     Run the crew.
     """
-    inputs = {"topic": "AI LLMs", "current_year": str(datetime.now().year)}
+    inputs = {
+        "url": "https://docs.aws.amazon.com/architecture-diagrams/latest/luminai-refinery-advisor-on-aws/luminai-refinery-advisor-on-aws.html?did=wp_card&trk=wp_card"
+    }
 
     try:
         CrewaiAiContentAws().crew().kickoff(inputs=inputs)
@@ -29,7 +31,9 @@ def train():
     """
     Train the crew for a given number of iterations.
     """
-    inputs = {"topic": "AI LLMs"}
+    inputs = {
+        "url": "https://docs.aws.amazon.com/architecture-diagrams/latest/luminai-refinery-advisor-on-aws/luminai-refinery-advisor-on-aws.html?did=wp_card&trk=wp_card"
+    }
     try:
         CrewaiAiContentAws().crew().train(
             n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs
