@@ -546,6 +546,21 @@ tools = [
 ]
 
 [[package]]
+name = "crewai-ai-content-aws"
+version = "0.1.0"
+source = { editable = "." }
+dependencies = [
+    { name = "crewai", extra = ["tools"] },
+    { name = "crewai-tools" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "crewai", extras = ["tools"], specifier = ">=0.100.1,<1.0.0" },
+    { name = "crewai-tools", specifier = ">=0.33.0" },
+]
+
+[[package]]
 name = "crewai-tools"
 version = "0.33.0"
 source = { registry = "https://pypi.org/simple" }
@@ -807,17 +822,6 @@ sdist = { url = "https://files.pythonhosted.org/packages/64/20/c380c311843318b57
 wheels = [
     { url = "https://files.pythonhosted.org/packages/0e/e2/b066e6e02d67bf5261a6d7539648c6da3365cc9eff3eb6d82009595d84d9/flatbuffers-25.1.24-py2.py3-none-any.whl", hash = "sha256:1abfebaf4083117225d0723087ea909896a34e3fec933beedb490d595ba24145", size = 30955 },
 ]
-
-[[package]]
-name = "flow-aws-arquitecture"
-version = "0.1.0"
-source = { editable = "." }
-dependencies = [
-    { name = "crewai", extra = ["tools"] },
-]
-
-[package.metadata]
-requires-dist = [{ name = "crewai", extras = ["tools"], specifier = ">=0.100.1,<1.0.0" }]
 
 [[package]]
 name = "frozenlist"

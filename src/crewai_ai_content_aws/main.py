@@ -3,7 +3,7 @@ import sys
 import warnings
 from datetime import datetime
 
-from crewai_ai_content_aws.crew import CrewaiAiContentAws
+from crewai_ai_content_aws.crew import AWSCrew
 
 warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 
@@ -22,7 +22,7 @@ def run():
     }
 
     try:
-        CrewaiAiContentAws().crew().kickoff(inputs=inputs)
+        AWSCrew().crew().kickoff(inputs=inputs)
     except Exception as e:
         raise Exception(f"An error occurred while running the crew: {e}")
 
@@ -35,7 +35,7 @@ def train():
         "url": "https://docs.aws.amazon.com/architecture-diagrams/latest/luminai-refinery-advisor-on-aws/luminai-refinery-advisor-on-aws.html?did=wp_card&trk=wp_card"
     }
     try:
-        CrewaiAiContentAws().crew().train(
+        AWSCrew().crew().train(
             n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs
         )
 
@@ -48,7 +48,7 @@ def replay():
     Replay the crew execution from a specific task.
     """
     try:
-        CrewaiAiContentAws().crew().replay(task_id=sys.argv[1])
+        AWSCrew().crew().replay(task_id=sys.argv[1])
 
     except Exception as e:
         raise Exception(f"An error occurred while replaying the crew: {e}")
@@ -60,7 +60,7 @@ def test():
     """
     inputs = {"topic": "AI LLMs"}
     try:
-        CrewaiAiContentAws().crew().test(
+        AWSCrew().crew().test(
             n_iterations=int(sys.argv[1]), openai_model_name=sys.argv[2], inputs=inputs
         )
 

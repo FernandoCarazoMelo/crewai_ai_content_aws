@@ -1,22 +1,23 @@
 
 read_url_task:
   description: >
-    Lee la URL proporcionada {url} y extrae la información relevante sobre la arquitectura de AWS descrita en la página, incluida la URL del diagrama y el enlace al diagrama original.
+    Lee la URL proporcionada {url} y utiliza tu conocimiento de aws para extender la información relevante 
+    sobre la arquitectura de AWS descrita en la página, incluida la URL del diagrama y el enlace al diagrama original.
   expected_output: >
     Un resumen claro con los siguientes detalles:
       - Introducción al caso práctico.
-      - Descripción de la arquitectura punto por punto.
       - Explicación de los servicios clave de AWS utilizados.
+      - Descripción de la arquitectura punto por punto.
       - Conclusión con los puntos clave.
-      - Enlace al diagrama original (si está disponible).
-      - URL de la imagen del diagrama (si está disponible).
+      - Enlace al diagrama original.
+      - URL de la imagen del diagrama.
   agent: aws_researcher
 
 write_article_task:
   description: >
-    Redacta un artículo en español en formato HTML basado en la información extraída de la URL {url} proporcionada.
+    Redacta un artículo para Medium en español en formato HTML basado en la información extraída de la URL {url} proporcionada.
     El artículo debe incluir:
-      - Introducción al caso práctico a resolver, mencionando awsdesdecero.com.
+      - Introducción al caso práctico a resolver, mencionando nuestra web awsdesdecero.com.
       - Explicación de los servicios clave de AWS utilizados.
       - Imagen embebida del diagrama original y enlace al diagrama original.
       - Descripción de la arquitectura punto por punto.
