@@ -26,7 +26,7 @@ write_article_task:
     El artículo debe incluir:
       - Introducción al caso práctico a resolver, mencionando nuestra web awsdesdecero.com.
       - Explicación de los servicios clave de AWS utilizados.
-      - Imagen embebida del diagrama original y enlace al diagrama original.
+      - Imagen embebida del diagrama original y enlace {url} al diagrama original.
       - Descripción de la arquitectura punto por punto.
       - Conclusión con los puntos clave, destacando la utilidad de la arquitectura en AWS y mencionando nuevamente awsdesdecero.com.
   expected_output: >
