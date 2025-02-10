@@ -13,6 +13,13 @@ read_url_task:
       - URL de la imagen del diagrama.
   agent: aws_researcher
 
+download_diagram_task:
+  description: >
+    Descarga la imagen en local en formato pdf. Si es necesario, convierte el tipo a png.
+  expected_output: >
+    Archivo con el diagrama guardado en local.
+  agent: aws_researcher
+  
 write_article_task:
   description: >
     Redacta un artículo para Medium en español en formato HTML basado en la información extraída de la URL {url} proporcionada.

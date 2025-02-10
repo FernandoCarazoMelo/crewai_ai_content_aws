@@ -1,3 +1,5 @@
+from os import read
+
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from crewai_tools import ScrapeWebsiteTool
@@ -43,9 +45,19 @@ class AWSCrew:
         )
 
     @task
+    def download_diagram_task(self) -> Task:
+        return Task(
+            config=self.tasks_config["download_diagram_task"],
+            allow_code_execution=True,
+            output_file="aws_diagram.png",
+        )
+
+    @task
     def write_article_task(self) -> Task:
         return Task(
-            config=self.tasks_config["write_article_task"], output_file="aws_arq.html"
+            config=self.tasks_config["write_article_task"],
+            output_file="aws_arq.html",
+            context=["read_url_task"],
         )
 
     @crew
