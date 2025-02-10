@@ -45,19 +45,18 @@ class AWSCrew:
         )
 
     @task
+    def write_article_task(self) -> Task:
+        return Task(
+            config=self.tasks_config["write_article_task"],
+            output_file="aws_arq.html",
+        )
+
+    @task
     def download_diagram_task(self) -> Task:
         return Task(
             config=self.tasks_config["download_diagram_task"],
             allow_code_execution=True,
             output_file="aws_diagram.png",
-        )
-
-    @task
-    def write_article_task(self) -> Task:
-        return Task(
-            config=self.tasks_config["write_article_task"],
-            output_file="aws_arq.html",
-            context=["read_url_task"],
         )
 
     @crew
