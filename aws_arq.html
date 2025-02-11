@@ -1,35 +1,52 @@
+<html>
+<head>
+    <title>Identificando Defectos de Productos Usando AWS y Visión por Computadora</title>
+</head>
 <body>
-    <h1>LUMINAI Refinery Advisor en AWS: Arquitectura y Servicios Clave</h1>
+    <h1>Identificando Defectos de Productos Usando AWS y Visión por Computadora</h1>
 
-    <h2>Introducción al caso práctico</h2>
-    <p>La arquitectura de LUMINAI Refinery Advisor en AWS es un ejemplo potente de cómo las soluciones impulsadas por inteligencia artificial pueden optimizar las operaciones en el sector energético. LUMINAI proporciona un sistema de soporte a decisiones que permite a los operadores mantener una visión integral de todas las operaciones de una refinería y hacer recomendaciones en tiempo real, buscando maximizar la eficiencia operativa y cerrar la brecha de rentabilidad. Para más información sobre arquitectura en la nube, visita <a href="https://awsdesdecero.com">awsdesdecero.com</a>.</p>
+    <h2>Introducción</h2>
+    <p>
+        El uso de la visión por computadora en la industria se ha hecho indispensable para la identificación y corrección de defectos en productos durante el proceso de fabricación. Este artículo analiza una arquitectura de Amazon Web Services (AWS) diseñada específicamente para detectar anomalías en imágenes de productos, como defectos en fundiciones de metales y irregularidades en imágenes de rayos X, utilizando el servicio Amazon Lookout for Vision. Para más información sobre AWS, visita <a href="https://awsdesdecero.com">awsdesdecero.com</a>.
+    </p>
 
-    <h2>Explicación de los servicios clave de AWS utilizados</h2>
+    <h2>Servicios Clave de AWS Utilizados</h2>
+    <p>
+        Para implementar la solución de detección de defectos, se utilizan varios servicios clave de AWS:
+    </p>
     <ol>
-        <li><strong>Amazon Elastic Container Service (ECS)</strong>: Permite ejecutar aplicaciones en contenedores, habilitando el despliegue y gestión de las aplicaciones de LUMINAI en un entorno escalable y seguro.</li>
-        <li><strong>Amazon Aurora</strong>: Es una base de datos relacional que combina la velocidad y disponibilidad de bases de datos de alto rendimiento con la simplicidad y coste efectividad de bases de datos de código abierto.</li>
-        <li><strong>Amazon MQ</strong>: Es un servicio de mensajería que facilita la comunicación entre los diversos componentes del sistema, proporcionando un flujo de mensajes robusto y escalable.</li>
-        <li><strong>Amazon Managed Streaming for Apache Kafka (MSK)</strong>: Facilita la ingesta y procesamiento de datos en tiempo real, permitiendo el manejo de eventos a gran escala.</li>
-        <li><strong>Amazon Simple Storage Service (S3)</strong>: Proporciona almacenamiento en la nube altamente escalable para datos a largo plazo, asegurando que toda la información sea accesible y segura.</li>
-        <li><strong>Amazon EMR</strong>: Permite ejecutar trabajos de procesamiento de datos a gran escala mediante herramientas de big data como Apache Hadoop y Apache Spark.</li>
+        <li><strong>Amazon S3</strong>: Almacenamiento de imágenes de productos y conjuntos de datos para entrenamiento y prueba.</li>
+        <li><strong>Amazon Lookout for Vision</strong>: Servicio que permite la formación y despliegue de modelos de detección de defectos.</li>
+        <li><strong>AWS Lambda</strong>: Ejecución de código en respuesta a eventos, facilitando la inferencia en tiempo de ejecución.</li>
+        <li><strong>AWS Step Functions</strong>: Orquestación de flujos de trabajo para gestionar procesos complejos.</li>
+        <li><strong>AWS Batch y AWS Fargate</strong>: Provisión de recursos computacionales y ejecución de trabajos en modo de lote para la detección de anomalías.</li>
     </ol>
 
-    <h2>Descripción de la arquitectura punto por punto</h2>
+    <h2>Descripción de la Arquitectura Paso a Paso</h2>
     <ol>
-        <li><strong>Flujo de Datos</strong>: Los datos de operaciones de múltiples refinerías se envían al sistema LUMINAI a través de un Application Load Balancer, que dirige el flujo de datos hacia un pipeline de procesamiento de sensores en una subred privada.</li>
-        <li><strong>Ingesta de Datos</strong>: Los procesos de ingesta de datos se ejecutan en Amazon ECS, donde se dirigen flujos de datos hacia Amazon MSK para su procesamiento en tiempo real.</li>
-        <li><strong>ETL y Almacenamiento</strong>: Los datos se procesan mediante trabajos de ETL (extracción, transformación y carga) en Amazon EMR. Los resultados se almacenan en Amazon Aurora PostgreSQL y se publican en Amazon MQ.</li>
-        <li><strong>Servicios de Negocio</strong>: Los servicios de orquestación y razonamiento de LUMINAI funcionan también en Amazon ECS y procesan mensajes a través de Amazon MQ. Utilizan algoritmos impulsados por IA para otorgar insights en tiempo real sobre cada refinería.</li>
-        <li><strong>Acceso a los Datos</strong>: Los datos procesados están disponibles para interfaces web, APIs y herramientas de inteligencia de negocios (BI), permitiendo a los usuarios autorizados – como gerentes de planta y ingenieros – acceder a la información mediante un navegador.</li>
-        <li><strong>Almacenamiento a Largo Plazo</strong>: Los datos históricos se almacenan en Amazon S3 para su fácil recuperación y análisis a largo plazo.</li>
+        <li><strong>Captura de Imágenes</strong>: Las imágenes de los productos son capturadas bajo condiciones consistentes utilizando cámaras, máquinas de rayos X y otros dispositivos en el piso de producción.</li>
+        <li><strong>Transferencia de Imágenes</strong>: Se transfieren imágenes únicas a AWS utilizando AWS Transfer Family, AWS DataSync o AWS IoT Greengrass.</li>
+        <li><strong>Almacenamiento</strong>: Las imágenes son almacenadas en Amazon S3, separadas en conjuntos de datos de entrenamiento y prueba.</li>
+        <li><strong>Entrenamiento del Modelo</strong>: Amazon Lookout for Vision se utiliza para etiquetar automáticamente, entrenar, ajustar y desplegar el modelo de detección de defectos.</li>
+        <li><strong>Inferencia de Anomalías</strong>: AWS Lambda inicia la función del modelo de inferencia que detectará las anomalías en el producto.</li>
+        <li><strong>Manejo de Resultados</strong>: Si el nivel de confianza no se cumple, los usuarios son notificados a través de Amazon SNS.</li>
+        <li><strong>Visualización de Resultados</strong>: Los resultados se almacenan en Amazon S3 para visualización mediante Amazon QuickSight.</li>
     </ol>
+
+    <h2>Diagrama de Arquitectura</h2>
+    <p>
+        A continuación se presenta el diagrama que ilustra la arquitectura mencionada:
+    </p>
+    <img src="https://d1.awsstatic.com/architecture-diagrams/ArchitectureDiagrams/identify-product-defects-using-industrial-computer-vision-ra.pdf" alt="Diagrama de Arquitectura" style="width:100%; height:auto;">
+    <p>
+        Puedes encontrar el diagrama de arquitectura original en el siguiente enlace: 
+        <a href="https://d1.awsstatic.com/architecture-diagrams/ArchitectureDiagrams/identify-product-defects-using-industrial-computer-vision-ra.pdf">Diagrama de Arquitectura de Detección de Defectos de Producto</a>.
+    </p>
 
     <h2>Conclusión</h2>
-    <p>La arquitectura de LUMINAI Refinery Advisor en AWS demuestra cómo se puede integrar de manera efectiva una solución de inteligencia artificial en el sector energético utilizando diversos servicios de AWS. Esta referencia arquitectónica resalta la escalabilidad, eficiencia y capacidad de análisis en tiempo real que se puede lograr a través de AWS, ofreciendo a las empresas la posibilidad de optimizar sus operaciones y maximizar la rentabilidad.</p>
-    <p>Para más información, dirígete a la <a href="https://docs.aws.amazon.com/architecture-diagrams/latest/luminai-refinery-advisor-on-aws/luminai-refinery-advisor-on-aws.html?did=wp_card&trk=wp_card">documentación de AWS</a>.</p>
-
-    <h2>Diagrama Original</h2>
-    <p>Puedes ver y descargar el diagrama desde <a href="https://docs.aws.amazon.com/architecture-diagrams/latest/luminai-refinery-advisor-on-aws/images/luminai-refinery-advisor-diagram.svg">aquí</a>.</p>
-    <img src="https://docs.aws.amazon.com/architecture-diagrams/latest/luminai-refinery-advisor-on-aws/images/luminai-refinery-advisor-diagram.svg" alt="Diagrama LUMINAI Refinery Advisor" />
+    <p>
+        La arquitectura presentada muestra cómo AWS y la visión por computadora pueden transformar el proceso de manufactura al permitir una identificación rápida y precisa de defectos en los productos. Esta solución no solo mejora la calidad del producto, sino que también optimiza los procesos de fabricación al reducir el tiempo y los costos asociados con el control de calidad manual. Para aprender más sobre AWS, visita nuevamente <a href="https://awsdesdecero.com">awsdesdecero.com</a>.
+    </p>
 </body>
+</html>
 ```

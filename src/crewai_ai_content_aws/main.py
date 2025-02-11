@@ -18,7 +18,7 @@ def run():
     Run the crew.
     """
     inputs = {
-        "url": "https://docs.aws.amazon.com/architecture-diagrams/latest/luminai-refinery-advisor-on-aws/luminai-refinery-advisor-on-aws.html?did=wp_card&trk=wp_card"
+        "url": "https://d1.awsstatic.com/architecture-diagrams/ArchitectureDiagrams/identify-product-defects-using-industrial-computer-vision-ra.pdf"
     }
 
     try:

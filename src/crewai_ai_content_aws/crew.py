@@ -2,7 +2,7 @@ from os import read
 
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
-from crewai_tools import ScrapeWebsiteTool
+from crewai_tools import PDFSearchTool, ScrapeWebsiteTool
 
 # If you want to run a snippet of code before or after the crew starts,
 # you can use the @before_kickoff and @after_kickoff decorators
@@ -25,14 +25,14 @@ class AWSCrew:
     def aws_researcher(self) -> Agent:
         return Agent(
             config=self.agents_config["aws_researcher"],
-            tools=[ScrapeWebsiteTool()],
+            tools=[ScrapeWebsiteTool(), PDFSearchTool()],
         )
 
     @agent
     def aws_writer(self) -> Agent:
         return Agent(
             config=self.agents_config["aws_writer"],
-            tools=[ScrapeWebsiteTool()],
+            tools=[ScrapeWebsiteTool(), PDFSearchTool()],
         )
 
     # To learn more about structured task outputs,
@@ -51,13 +51,13 @@ class AWSCrew:
             output_file="aws_arq.html",
         )
 
-    @task
-    def download_diagram_task(self) -> Task:
-        return Task(
-            config=self.tasks_config["download_diagram_task"],
-            allow_code_execution=True,
-            output_file="aws_diagram.png",
-        )
+    # @task
+    # def download_diagram_task(self) -> Task:
+    #     return Task(
+    #         config=self.tasks_config["download_diagram_task"],
+    #         allow_code_execution=True,
+    #         output_file="aws_diagram.png",
+    #     )
 
     @crew
     def crew(self) -> Crew:
