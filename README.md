@@ -1,6 +1,6 @@
-# CrewaiAiContentAws Crew
+# {{crew_name}} Crew
 
-Welcome to the CrewaiAiContentAws Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+Welcome to the {{crew_name}} Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
 
 ## Installation
 
@@ -18,34 +18,36 @@ Next, navigate to your project directory and install the dependencies:
 ```bash
 crewai install
 ```
+
 ### Customizing
 
 **Add your `OPENAI_API_KEY` into the `.env` file**
 
-- Modify `src/crewai_ai_content_aws/config/agents.yaml` to define your agents
-- Modify `src/crewai_ai_content_aws/config/tasks.yaml` to define your tasks
-- Modify `src/crewai_ai_content_aws/crew.py` to add your own logic, tools and specific args
-- Modify `src/crewai_ai_content_aws/main.py` to add custom inputs for your agents and tasks
+- Modify `src/flow_aws_arquitecture/config/agents.yaml` to define your agents
+- Modify `src/flow_aws_arquitecture/config/tasks.yaml` to define your tasks
+- Modify `src/flow_aws_arquitecture/crew.py` to add your own logic, tools and specific args
+- Modify `src/flow_aws_arquitecture/main.py` to add custom inputs for your agents and tasks
 
 ## Running the Project
 
 To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
 
 ```bash
-$ crewai run
+crewai run
 ```
 
-This command initializes the crewai-ai-content-aws Crew, assembling the agents and assigning them tasks as defined in your configuration.
+This command initializes the flow_aws_arquitecture Crew, assembling the agents and assigning them tasks as defined in your configuration.
 
 This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
 
 ## Understanding Your Crew
 
-The crewai-ai-content-aws Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
+The flow_aws_arquitecture Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
 
 ## Support
 
-For support, questions, or feedback regarding the CrewaiAiContentAws Crew or crewAI.
+For support, questions, or feedback regarding the {{crew_name}} Crew or crewAI.
+
 - Visit our [documentation](https://docs.crewai.com)
 - Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
 - [Join our Discord](https://discord.com/invite/X4JWnZnxPb)

@@ -32,7 +32,7 @@ class AWSCrew:
     def aws_writer(self) -> Agent:
         return Agent(
             config=self.agents_config["aws_writer"],
-            tools=[ScrapeWebsiteTool(), PDFSearchTool()],
+            # tools=[ScrapeWebsiteTool(), PDFSearchTool()],
         )
 
     # To learn more about structured task outputs,
@@ -50,14 +50,6 @@ class AWSCrew:
             config=self.tasks_config["write_article_task"],
             output_file="aws_arq.html",
         )
-
-    # @task
-    # def download_diagram_task(self) -> Task:
-    #     return Task(
-    #         config=self.tasks_config["download_diagram_task"],
-    #         allow_code_execution=True,
-    #         output_file="aws_diagram.png",
-    #     )
 
     @crew
     def crew(self) -> Crew:
